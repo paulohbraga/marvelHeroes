@@ -23,9 +23,13 @@ const App = () => {
       <NavigationContainer>
         <Stack.Navigator
           screenOptions={screenOptionStyle}
-          initialRouteName={'Marvel Heroes'}>
-          <Stack.Screen name="Marvel Heroes" component={MarvelHeroes} />
-          <Stack.Screen name="Hero Details" component={HeroDetails} />
+          initialRouteName={'Heróis Marvel'}>
+          <Stack.Screen
+            options={{headerShown: false}}
+            name="Heróis Marvel"
+            component={MarvelHeroes}
+          />
+          <Stack.Screen name="Detalhes" component={HeroDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
