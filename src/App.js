@@ -4,6 +4,7 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {SafeAreaProvider} from 'react-native-safe-area-context';
 import MarvelHeroes from './screens/MarvelHeroes';
 import HeroDetails from './screens/HeroDetails';
+import {COLORS} from './assets/constants';
 
 const Stack = createStackNavigator();
 
@@ -11,9 +12,9 @@ const screenOptionStyle = {
   headerStyle: {
     height: 45,
     elevation: 0,
-    backgroundColor: '#E21320',
+    backgroundColor: COLORS.red,
   },
-  headerTintColor: 'rgba(255, 255, 255, 1.0)',
+  headerTintColor: COLORS.white,
   headerTitleStyle: {
     fontFamily: 'Marvel-Regular',
   },

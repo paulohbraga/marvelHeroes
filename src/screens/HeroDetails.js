@@ -1,16 +1,17 @@
 /* eslint-disable prettier/prettier */
-import React,{useRef, useEffect} from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
-  View,
-  Text,
-  Image,
-  Animated,
+  Animated, Text, View, StyleSheet,
 } from 'react-native';
+import { HeroImage } from '../components/HeroImage';
+import { HeroName } from '../components/HeroName';
+import { EventsLabel } from '../components/EventsLabel';
 
-const HeroDetails = ({route}) => {
+
+const HeroDetails = ({ route }) => {
 
   const { item } = route.params;
-  const {items} = item.events;
+  const { items } = item.events;
   const events = items.slice(0, 3);
   const heightAnimated = useRef(new Animated.Value(0)).current;
   const imgAnimatedWidth = useRef(new Animated.Value(0)).current;
@@ -27,25 +28,40 @@ const HeroDetails = ({route}) => {
       useNativeDriver: false,
     }).start();
 
-  }, [ heightAnimated, imgAnimatedWidth]);
+  }, [heightAnimated, imgAnimatedWidth]);
 
   return (
-    <View style={{flex:1, flexDirection: 'column', alignItems: 'center',padding: 5,backgroundColor: '#E21320'}}>
-      <Text style={{fontSize: 40, padding: 20, fontFamily: 'Marvel-Regular', color: '#fff'}}>{item.name.toUpperCase()}</Text>
-    <Animated.View style={{width: imgAnimatedWidth, height: heightAnimated}}>
-      <Image source={{
-        uri: `${item.thumbnail.path}.${item.thumbnail.extension}`,
-        }}
-      style={{width: 300, height: 300, borderRadius: 200, borderColor: 'yellow', borderWidth: 2}}
-      />
-      </Animated.View>
-      <View style={{backgroundColor: '#000', margin: 20, padding: 50, borderRadius: 5, width: '80%'}}>
-        <Text style={{fontSize: 25, fontFamily: 'Marvel-Regular', color: '#fff', marginBottom: 10}}>EVENTOS</Text>
+    <View style={styles.container}>
+      <HeroName name={item.name.toUpperCase()} />
+      <HeroImage thumbnail={item.thumbnail} heightAnimated={heightAnimated} imgAnimatedWidth={imgAnimatedWidth} />
+      <View style={styles.events}>
+        <EventsLabel />
         {events.length > 0 ? events.map((event, index) => {
-          return <Text key={index} style={{fontSize: 20, color: '#fff'}}>{event.name}</Text>;
-        }) : <Text style={{fontSize: 20, color: '#fff'}}>Não existem eventos</Text>}
+          return <Text key={index} style={styles.eventName}>{event.name}</Text>;
+        }) : <Text style={styles.noEvent}>Não existem eventos</Text>}
       </View>
     </View>);
 };
 
 export default HeroDetails;
+
+export const styles = StyleSheet.create({
+  eventName: {
+    fontSize: 20,
+    color: '#fff',
+  },
+  events: {
+    backgroundColor: '#000',
+    margin: 20,
+    padding: 50,
+    borderRadius: 5,
+    width: '80%',
+  },
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: 5,
+    backgroundColor: '#E21320',
+  },
+});
