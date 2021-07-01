@@ -16,6 +16,7 @@ const screenOptionStyle = {
   },
   headerTintColor: COLORS.white,
   headerTitleStyle: {
+    fontSize: 25,
     fontFamily: 'Marvel-Regular',
   },
 };
