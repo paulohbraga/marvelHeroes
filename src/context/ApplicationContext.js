@@ -24,6 +24,21 @@ export const ApplicationProvider = ({children}) => {
     }
   };
 
+  const SearchHero = async text => {
+    setisLoading(true);
+    const url = generateAPIUrlWithHash();
+    try {
+      const response = await axios.get(url + `&name=${text}`);
+      const data = response.data.data;
+      setHeroes(data.results);
+      console.log('pegou unico', data.results);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setisLoading(false);
+    }
+  };
+
   return (
     <ApplicationContext.Provider
       value={{
@@ -32,6 +47,7 @@ export const ApplicationProvider = ({children}) => {
         offset,
         setOffset,
         isLoading,
+        SearchHero,
       }}>
       {children}
     </ApplicationContext.Provider>
