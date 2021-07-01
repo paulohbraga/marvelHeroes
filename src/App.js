@@ -14,6 +14,9 @@ const screenOptionStyle = {
     backgroundColor: '#E21320',
   },
   headerTintColor: 'rgba(255, 255, 255, 1.0)',
+  headerTitleStyle: {
+    fontFamily: 'Marvel-Regular',
+  },
 };
 
 const App = () => {
