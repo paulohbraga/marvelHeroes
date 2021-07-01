@@ -72,7 +72,7 @@ const MarvelHeroes = ({navigation}) => {
   },[offset]);
   return (
     <View style={{flex: 1, flexDirection: 'column', alignItems: 'center', width: '100%', height: '100%', backgroundColor: '#E21320'}}>
-    <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-around', alignItems: 'center', backgroundColor: '#E21320', padding: 10}}>
+    <View style={{flexDirection: 'row', width: '100%', justifyContent: 'space-between', alignItems: 'center', backgroundColor: '#E21320', padding: 10}}>
       <Text style={{fontFamily: 'AvengeanceHeroicAvengerBoldItalic',fontSize: 30,  color: '#fff'}}>Busca Marvel</Text>
       <TouchableOpacity onPress={()=>setvisibleSearch(!visibleSearch)} style={{ width: 40, height: 40, alignItems: 'center', justifyContent: 'center'}}>
       <Icon
@@ -83,16 +83,17 @@ const MarvelHeroes = ({navigation}) => {
       </TouchableOpacity>
       </View>
        {visibleSearch ? <View style={{width:'80%', margin: 10}}>
-        <TextInput style={{borderRadius: 45, borderColor: '#626262', borderWidth: 0.5, height: 40, fontSize: 16, backgroundColor: '#fff'}} placeholder="Buscar Personagem"
+        <TextInput style={{borderRadius: 45, borderColor: 'red', borderWidth: 0.5, height: 50, fontSize: 16, backgroundColor: '#fff'}} placeholder="Buscar Personagem"
           onChangeText={(text) => console.log(text)}/>
       </View> : null}
       <View style={{backgroundColor: '#E21320', width: screenWidth, height: 5, flexDirection: 'row', alignItems: 'center' ,justifyContent: 'space-around' }} />
       <ScrollView  horizontal={true}>
-       <FlatList data={heroes} keyExtractor={item => item.id} renderItem={renderItem} ListFooterComponent={renderFooter} />
+      {isLoading ? <ActivityIndicator color='white'/> :
+       <FlatList data={heroes} keyExtractor={item => item.id} renderItem={renderItem} /> }
       </ScrollView>
       <View style={{flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#E21320', width: '100%', padding: 5}}>
-      {offset === 0 ? null : <TouchableOpacity style={styles.button} onPress={() => setOffset(offset - 10)}><Text style={styles.text}>Anteriores</Text></TouchableOpacity>}
-      <TouchableOpacity style={styles.button} onPress={() => setOffset(offset + 10)}><Text style={styles.text}>Próximos</Text></TouchableOpacity>
+      {offset === 0 ? null : <TouchableOpacity style={styles.button} onPress={() => setOffset(offset - 10)}><Text style={styles.text}>ANTERIORES</Text></TouchableOpacity>}
+      <TouchableOpacity style={styles.button} onPress={() => setOffset(offset + 10)}><Text style={styles.text}>CARREGAR  MAIS</Text></TouchableOpacity>
       </View>
     </View>);
 };
@@ -113,8 +114,8 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 16,
     lineHeight: 21,
-    fontWeight: 'bold',
     letterSpacing: 0.25,
     color: 'white',
+    fontFamily: 'AvengeanceHeroicAvengerBoldItalic',
   },
 });
