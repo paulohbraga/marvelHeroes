@@ -18,7 +18,7 @@ const HeroDetails = ({route}) => {
       <Image source={{
         uri: `${item.thumbnail.path}.${item.thumbnail.extension}`,
         }}
-      style={{width: 300, height: 300, borderRadius: 200, borderColor: '#000', borderWidth: 4}}
+      style={{width: 300, height: 300, borderRadius: 200, borderColor: '#FFAF32', borderWidth: 4}}
       />
       <View style={{backgroundColor: '#000', margin: 20, padding: 50, borderRadius: 5, width: '80%'}}>
         <Text style={{fontSize: 25, fontFamily: 'Marvel-Regular', color: '#fff', marginBottom: 10}}>EVENTOS</Text>
