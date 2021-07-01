@@ -6,11 +6,11 @@ import {
 } from 'react-native';
 import ApplicationContext from '../context/ApplicationContext';
 
-const HeroDetails = ({navigation}) => {
-
+const HeroDetails = ({route, navigation}) => {
+  const { item } = route.params;
   return (
     <View>
-      <Text>detalhes</Text>
+      <Text>detalhes {item.id}</Text>
     </View>);
 };
 
