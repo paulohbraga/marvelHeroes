@@ -1,6 +1,6 @@
 import React, {useState, useCallback} from 'react';
 import axios from 'axios';
-import {generateAPIUrlWithHash} from '../assets/secrets/generateAPIUrlWithHash';
+import {generateAPIUrlWithHash} from '../assets/utils/generateAPIUrlWithHash';
 
 const ApplicationContext = React.createContext();
 
@@ -9,35 +9,33 @@ export const ApplicationProvider = ({children}) => {
   const [offset, setOffset] = useState(0);
   const [isLoading, setisLoading] = useState(false);
 
-  const getHeroes = async () => {
+  const getHeroes = useCallback(async () => {
     setisLoading(true);
     const url = generateAPIUrlWithHash();
     try {
       const response = await axios.get(url + `&limit=10&offset=${offset}`);
       const data = response.data.data;
       setHeroes(data.results);
-      //console.log('pegou', data.results);
     } catch (error) {
       console.log(error);
     } finally {
       setisLoading(false);
     }
-  };
+  }, [offset]);
 
-  const SearchHero = async text => {
+  const SearchHero = useCallback(async text => {
     setisLoading(true);
     const url = generateAPIUrlWithHash();
     try {
       const response = await axios.get(url + `&name=${text}`);
       const data = response.data.data;
       setHeroes(data.results);
-      console.log('pegou unico', data.results);
     } catch (error) {
       console.log(error);
     } finally {
       setisLoading(false);
     }
-  };
+  }, []);
 
   return (
     <ApplicationContext.Provider

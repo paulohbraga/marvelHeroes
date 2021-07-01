@@ -1,16 +1,17 @@
 /* eslint-disable prettier/prettier */
-import React, {useContext, useEffect, useLayoutEffect} from 'react';
+import React from 'react';
 import {
   View,
   Text,
   Image,
-  Button,
 } from 'react-native';
 
 const HeroDetails = ({route}) => {
+
   const { item } = route.params;
   const {items} = item.events;
   const events = items.slice(0, 3);
+
   return (
     <View style={{flex:1, flexDirection: 'column', alignItems: 'center',padding: 5,backgroundColor: '#E21320'}}>
       <Text style={{fontSize: 40, padding: 20, fontFamily: 'Marvel-Regular', color: '#fff'}}>{item.name.toUpperCase()}</Text>

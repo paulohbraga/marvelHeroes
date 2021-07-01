@@ -1,9 +1,8 @@
 /* eslint-disable prettier/prettier */
-import React, {useContext, useEffect, useLayoutEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import {
   View,
   Text,
-  Pressable,
   TextInput,
   FlatList,
   TouchableOpacity,
@@ -92,12 +91,11 @@ const MarvelHeroes = ({navigation}) => {
         />
         <TouchableOpacity
         style={{height: 50, width: 50, justifyContent: 'center', alignItems: 'center'}}
-    onPress={() => {
-      setTextSearch(null);
-      getHeroes();
-
-    }}>
-    <Icon
+        onPress={() => {
+          setTextSearch(null);
+          getHeroes();
+        }}>
+        <Icon
         name="close"
         size={20}
         color="#fff"
@@ -107,7 +105,7 @@ const MarvelHeroes = ({navigation}) => {
       <View style={{backgroundColor: '#E21320', width: screenWidth, height: 5, flexDirection: 'row', alignItems: 'center' ,justifyContent: 'space-around' }} />
       <ScrollView  horizontal={true}>
       {isLoading ? <ActivityIndicator color='white'/> :
-       <FlatList data={heroes} keyExtractor={item => item.id} renderItem={renderItem} /> }
+       heroes.length > 0 ? <FlatList data={heroes} keyExtractor={item => item.id} renderItem={renderItem} /> : <View style={{justifyContent: 'center', alignItems: 'center'}}><Text style={{fontFamily: 'Marvel-Regular', fontSize: 20}}>HEROI NAO ENCONTRADO</Text></View> }
       </ScrollView>
       <View style={{flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#E21320', width: '100%', padding: 5}}>
       {offset === 0 ? null : <TouchableOpacity style={styles.button} onPress={() => setOffset(offset - 10)}><Text style={styles.text}> {'<<<'} </Text></TouchableOpacity>}
