@@ -24,13 +24,13 @@ const MarvelHeroes = ({navigation}) => {
   const [textSearch, setTextSearch] = useState('');
 
   const Item = ({ item }) => (
-    <TouchableOpacity onPress={() => navigation.navigate('Detalhes', {item: item})} style={{backgroundColor: 'white', elevation: 2, borderWidth: 0.5, borderRadius: 10, borderColor: '#000', margin: 5, height: 120, width: screenWidth - 40,justifyContent:  'space-between', alignContent: 'space-around',alignItems: 'center', flexDirection: 'row'}}>
+    <TouchableOpacity onPress={() => navigation.navigate('Detalhes do herói', {item: item})} style={{backgroundColor: 'white', elevation: 2, borderWidth: 1.5, borderRadius: 10, borderColor: '#000', margin: 5, height: 120, width: screenWidth - 40,justifyContent:  'space-between', alignContent: 'space-around',alignItems: 'center', flexDirection: 'row'}}>
       <View style={{width: 100, marginLeft: 30}}>
 
       <Image source={{
         uri: `${item.thumbnail.path}.${item.thumbnail.extension}`,
         }}
-      style={{width: 100, height: 100, borderRadius: 50}}
+      style={{width: 100, height: 100, borderRadius: 50, borderWidth: 1, borderColor: '#000'}}
       />
       </View>
       <View style={{width: '50%'}}>
@@ -102,10 +102,10 @@ const MarvelHeroes = ({navigation}) => {
       />
 </TouchableOpacity>
       </View> : null}
-      <View style={{backgroundColor: '#E21320', width: screenWidth, height: 5, flexDirection: 'row', alignItems: 'center' ,justifyContent: 'space-around' }} />
-      <ScrollView  horizontal={true}>
+      <View style={{backgroundColor: 'yellow', width: screenWidth, height: 5, flexDirection: 'row', alignItems: 'center' ,justifyContent: 'space-around', borderColor:'#000', borderTopWidth: 1, borderBottomWidth: 1 }} />
+      <ScrollView  horizontal={true}  showsVerticalScrollIndicator={false} showsHorizontalScrollIndicator={false}>
       {isLoading ? <ActivityIndicator color='white'/> :
-       heroes.length > 0 ? <FlatList data={heroes} keyExtractor={item => item.id} renderItem={renderItem} /> : <View style={{justifyContent: 'center', alignItems: 'center'}}><Text style={{fontFamily: 'Marvel-Regular', fontSize: 20}}>HEROI NAO ENCONTRADO</Text></View> }
+       heroes.length > 0 ? <FlatList showsVerticalScrollIndicator={false} data={heroes} keyExtractor={item => item.id} renderItem={renderItem} /> : <View style={{justifyContent: 'center', alignItems: 'center'}}><Text style={{fontFamily: 'Marvel-Regular', fontSize: 20}}>HEROI NAO ENCONTRADO</Text></View> }
       </ScrollView>
       <View style={{flexDirection: 'row', justifyContent: 'space-around', backgroundColor: '#E21320', width: '100%', padding: 5}}>
       {offset === 0 ? null : <TouchableOpacity style={styles.button} onPress={() => setOffset(offset - 10)}><Text style={styles.text}> {'<<<'} </Text></TouchableOpacity>}

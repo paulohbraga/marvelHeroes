@@ -28,7 +28,7 @@ const App = () => {
             name="Heróis Marvel"
             component={MarvelHeroes}
           />
-          <Stack.Screen name="Detalhes" component={HeroDetails} />
+          <Stack.Screen name="Detalhes do herói" component={HeroDetails} />
         </Stack.Navigator>
       </NavigationContainer>
     </SafeAreaProvider>
